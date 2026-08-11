@@ -12,29 +12,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.microtonal.scale9lab.viewmodel.MainViewModel
 
-// הגדרות צבעים
-private val DarkBackground = Color(0xFF121212)
-private val AccentCyan = Color(0xFF00E5FF)
-private val KeyPressed = Color(0xFF2A2A3D)
-private val KeyBackground = Color(0xFF1E1E1E)
-private val AccentGold = Color(0xFFFFD700)
-
 @Composable
 fun RecordingScreen(viewModel: MainViewModel) {
     val isRecording by viewModel.isRecording.collectAsState()
     val lastExportedFile by viewModel.lastExportedFile.collectAsState()
 
+    // צבעים מקומיים למניעת התנגשות מול Theme.kt
+    val bgColor = Color(0xFF121212)
+    val cyanColor = Color(0xFF00E5FF)
+    val keyPressedColor = Color(0xFF2A2A3D)
+    val keyBgColor = Color(0xFF1E1E1E)
+    val goldColor = Color(0xFFFFD700)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(DarkBackground)
+            .background(bgColor)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Record & Export WAV",
-            color = AccentCyan,
+            color = cyanColor,
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 24.dp)
@@ -43,12 +43,12 @@ fun RecordingScreen(viewModel: MainViewModel) {
         if (!isRecording) {
             Button(
                 onClick = { viewModel.startRecording() },
-                colors = ButtonDefaults.buttonColors(containerColor = AccentCyan),
+                colors = ButtonDefaults.buttonColors(containerColor = cyanColor),
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
                     .height(50.dp)
             ) {
-                Text("Start Recording", color = DarkBackground, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text("Start Recording", color = bgColor, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
         } else {
             Button(
@@ -67,25 +67,25 @@ fun RecordingScreen(viewModel: MainViewModel) {
         Button(
             onClick = { viewModel.exportRecordingToWav() },
             enabled = !isRecording,
-            colors = ButtonDefaults.buttonColors(containerColor = KeyPressed),
+            colors = ButtonDefaults.buttonColors(containerColor = keyPressedColor),
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(50.dp)
         ) {
-            Text("Export to WAV File", color = AccentGold, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text("Export to WAV File", color = goldColor, fontWeight = FontWeight.Bold, fontSize = 16.sp)
         }
 
         Spacer(modifier = Modifier.height(24.dp))
 
         lastExportedFile?.let { file ->
             Card(
-                colors = CardDefaults.cardColors(containerColor = KeyBackground),
+                colors = CardDefaults.cardColors(containerColor = keyBgColor),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
                         text = "Exported Successfully!",
-                        color = AccentGold,
+                        color = goldColor,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp
                     )
