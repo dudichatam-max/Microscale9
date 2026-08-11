@@ -6,10 +6,18 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.microtonal.scale9lab.viewmodel.MainViewModel
+
+// הגדרות צבעים
+private val DarkBackground = Color(0xFF121212)
+private val AccentCyan = Color(0xFF00E5FF)
+private val KeyPressed = Color(0xFF2A2A3D)
+private val KeyBackground = Color(0xFF1E1E1E)
+private val AccentGold = Color(0xFFFFD700)
 
 @Composable
 fun RecordingScreen(viewModel: MainViewModel) {
